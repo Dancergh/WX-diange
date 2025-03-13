@@ -17,7 +17,7 @@ if (body) {
     
       obj.data.song_name = originalName + "-" + originalSinger;
       // 将歌手改为固定文本“点击播放—>”
-      obj.data.song_singer = "选自阿根的电台>>>";
+      obj.data.song_singer = "恭喜发财"+ ","+ "大吉大利";
       // 修改封面，这个链接中，你只需要改一下后面的uin=你的qq号码，其它不要动。保存即可。会调用你的qq号头像。
       // obj.data.cover = "http://q4.qlogo.cn/headimg_dl?dst_uin=826371884&spec=640"
       obj.data.cover = "http://q4.qlogo.cn/headimg_dl?dst_uin=826371884&spec=640";
