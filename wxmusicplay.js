@@ -20,7 +20,7 @@ if (body) {
       obj.data.song_singer = "恭喜发财"+ ","+ "大吉大利";
       // 修改封面，这个链接中，你只需要改一下后面的uin=你的qq号码，其它不要动。保存即可。会调用你的qq号头像。
       // obj.data.cover = "http://q4.qlogo.cn/headimg_dl?dst_uin=826371884&spec=640"
-      obj.data.cover = "http://q4.qlogo.cn/headimg_dl?dst_uin=826371884&spec=640";
+      obj.data.cover = "https://github.com/Dancergh/WX-diange/blob/5074844f057c38ec0432b80ea878eda980a8fb29/img/hongbao.png";
     }
     $done({body: JSON.stringify(obj)});
   } catch (e) {
