@@ -51,13 +51,21 @@ const getPriceData = async () => {
 };
 
 getPriceData().then((priceData) => {
-  if (!priceData || priceData.err) return $done({ body: `<h2>${priceData.msg}</h2>` });
+  if (!priceData || priceData.err) {
+    console.log("Price data fetch failed:", priceData.msg);
+    return $done({ body: $response.body, headers: $response.headers });
+  }
   
   let { body, headers } = $response;
-  if (!body.includes("<body>")) return $done({ body, headers });
+  if (!body.includes("<body>")) {
+    console.log("Warning: <body> tag not found in response");
+    return $done({ body, headers });
+  }
   
   const tableHTML = priceHistoryTable(priceData);
-  body = body.replace("<body>", `<body>${tableHTML}`);
+  body = body.replace(/<body[^>]*>/, (match) => `${match}${tableHTML}`);
+  
+  console.log("Modified body content successfully");
   
   $done({ body, headers });
 });
