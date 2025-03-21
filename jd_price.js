@@ -307,15 +307,15 @@ const getJdData = (body) => {
 
 const getPriceData = async () => {
     try {
+        const productId = $request.url.match(/\d+/)[0];
         const body = await http({
             method: "post",
             url: "https://apapia-history.manmanbuy.com/ChromeWidgetServices/WidgetServices.ashx",
             headers: {
                 "user-agent": "CFNetwork/3826.500.101 Darwin/24.4.0",
+                "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `methodName=getHistoryTrend&p_url=https://item.m.jd.com/product/${$request.url.match(
-                /\d+/
-            )}.html`,
+            body: `methodName=getHistoryTrend&p_url=https://item.m.jd.com/product/${productId}.html`
         });
 
         if (body.err) return body;
@@ -326,7 +326,7 @@ const getPriceData = async () => {
         };
     } catch (error) {
         console.error("获取价格数据时出错:", error);
-        return { err: true, msg: "获取价格数据时出错" };
+        return { err: true, msg: `获取价格数据时出错: ${error.message}` };
     }
 };
 
