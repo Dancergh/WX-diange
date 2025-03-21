@@ -5,15 +5,27 @@
  * 脚本作者：小白脸
  
 [Script]
-京东比价 = type=http-response,pattern=^https:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html,requires-body=1,max-size=0,binary-body-mode=0,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/jd_price.js,timeout=60
+京东比价 = type=http-response,pattern=^https:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html,requires-body=1,max-size=0,binary-body-mode=0,script-path=https://raw.githubusercontent.com/ly6610111gmail6/qx/refs/heads/main/jd_price.js,timeout=60
  
 [MITM]
 hostname = %APPEND% in.m.jd.com
 
 */
 
+// 自定义创建可解析 Promise 的函数
+function createResolvablePromise() {
+    let resolveFn, rejectFn;
+    const promise = new Promise((resolve, reject) => {
+        resolveFn = resolve;
+        rejectFn = reject;
+    });
+    return { promise, resolve: resolveFn, reject: rejectFn };
+}
+
+
 const http = (op) => {
-  const { promise, resolve, reject } = Promise.withResolvers();
+  //const { promise, resolve, reject } = Promise.withResolvers();
+const { promise, resolve, reject } = createResolvablePromise();
 
   this.$httpClient?.[op.method || "get"](op, (err, resp, data) =>
     err ? reject(err) : resolve(JSON.parse(data))
