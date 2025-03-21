@@ -1,0 +1,16 @@
+/*
+ * 脚本名称：京东比价修正版
+ * 使用说明：进入APP商品详情页面触发。
+ * 支持版本：App V15.0.80（自行测试）
+ * 脚本作者：小白脸
+ 
+[Script]
+京东比价 = type=http-response,pattern=^https:\/\/item\.m\.jd\.com\/product\/\d+\.html,requires-body=1,max-size=0,binary-body-mode=0,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/jd_price.js,timeout=60
+ 
+[MITM]
+hostname = %APPEND% item.m.jd.com
+*/
+
+// 其余代码保持原样，但需确保插入位置正确
+// 例如在</body>前插入：
+body = body.replace("</body>", `${tableHTML}</body>`);
