@@ -124,7 +124,7 @@ const priceHistoryTable = (data) => {
 
     .price-table th,
     .price-table td {
-      padding: 8px 6px;
+      padding: 14px 12px;
       text-align: center;
       border: 1px solid var(--border-color);
       transition: border 0.3s ease;
